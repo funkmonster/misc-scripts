@@ -40,6 +40,9 @@ yay -S --noconfirm sunshine-git
 echo "==> Installing vkBasalt (post-processing filter)..."
 yay -S --noconfirm vkbasalt lib32-vkbasalt
 
+echo "==> Installing kwriteconfig5 (for KDE scroll settings)..."
+sudo pacman -S --noconfirm kio
+
 echo "==> Setting inverted scroll direction in KDE..."
 mkdir -p ~/.config
 kwriteconfig5 --file kcminputrc --group "Mouse" --key "ReverseScrollPolarity" "true"
