@@ -41,7 +41,7 @@ echo "==> Installing vkBasalt (post-processing filter)..."
 yay -S --noconfirm vkbasalt lib32-vkbasalt
 
 echo "==> Installing kwriteconfig5 (for KDE scroll settings)..."
-sudo pacman -S --noconfirm kio
+sudo pacman -S --noconfirm kinit
 
 echo "==> Setting inverted scroll direction in KDE..."
 mkdir -p ~/.config
