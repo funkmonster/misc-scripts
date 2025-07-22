@@ -40,12 +40,18 @@ yay -S --noconfirm sunshine-git
 echo "==> Installing vkBasalt (post-processing filter)..."
 yay -S --noconfirm vkbasalt lib32-vkbasalt
 
-echo "==> Installing kwriteconfig5 (for KDE scroll settings)..."
-sudo pacman -S --noconfirm kinit
+echo "==> Enabling natural scroll in ~/.config/kwinrc"
+kwinrc=~/.config/kwinrc
 
-echo "==> Setting inverted scroll direction in KDE..."
-mkdir -p ~/.config
-kwriteconfig5 --file kcminputrc --group "Mouse" --key "ReverseScrollPolarity" "true"
+if ! grep -q "^\[Libinput\]" "$kwinrc"; then
+    echo "[Libinput]" >> "$kwinrc"
+fi
+
+if grep -q "^NaturalScroll=" "$kwinrc"; then
+    sed -i "s/^NaturalScroll=.*/NaturalScroll=true/" "$kwinrc"
+else
+    echo "NaturalScroll=true" >> "$kwinrc"
+fi
 
 echo "==> Cleaning up orphan packages..."
 sudo pacman -Rns $(pacman -Qdtq) || true
