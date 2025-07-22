@@ -40,18 +40,9 @@ yay -S --noconfirm sunshine-git
 echo "==> Installing vkBasalt (post-processing filter)..."
 yay -S --noconfirm vkbasalt lib32-vkbasalt
 
-echo "==> Enabling natural scroll in ~/.config/kwinrc"
-kwinrc=~/.config/kwinrc
-
-if ! grep -q "^\[Libinput\]" "$kwinrc"; then
-    echo "[Libinput]" >> "$kwinrc"
-fi
-
-if grep -q "^NaturalScroll=" "$kwinrc"; then
-    sed -i "s/^NaturalScroll=.*/NaturalScroll=true/" "$kwinrc"
-else
-    echo "NaturalScroll=true" >> "$kwinrc"
-fi
+echo "==> Enabling natural scroll in ~/.config/kcminputrc"
+sudo pacman -S --noconfirm kconfig5
+kwriteconfig5 --file kcminputrc --group "Mouse" --key "ReverseScrollPolarity" "true"
 
 echo "==> Cleaning up orphan packages..."
 sudo pacman -Rns $(pacman -Qdtq) || true
