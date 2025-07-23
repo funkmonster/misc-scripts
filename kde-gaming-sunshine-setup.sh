@@ -15,8 +15,8 @@ sudo systemctl enable sddm.service
 echo "==> Installing AMD GPU + Vulkan + Wayland support..."
 sudo pacman -S --noconfirm mesa vulkan-radeon lib32-mesa lib32-vulkan-radeon xf86-video-amdgpu
 
-echo "==> Installing gaming tools (Steam, Wine, Proton, etc)..."
-sudo pacman -S --noconfirm steam gamemode mangohud lib32-mangohud \
+echo "==> Installing gaming tools (Steam, Wine, Proton, Gamescope, etc)..."
+sudo pacman -S --noconfirm steam gamescope mangohud lib32-mangohud \
     lutris wine-staging wine-gecko wine-mono winetricks
 
 echo "==> Installing Flatpak + Heroic Games Launcher..."
